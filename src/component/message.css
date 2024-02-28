@@ -1,11 +1,16 @@
 /* Define CSS variables for easier adjustment */
+:root {
+    --navbar-width: 50px;
+    --sidebar-width: 70px;
+    --conversation-sidebar-width: 180px;
+}
 
 .sidebar-right,
 .card {
     z-index: 999; /* Lower z-index */
 }
 
-/* Sidebar */
+/* Sidebar Right */
 .sidebar-right {
     position: absolute;
     width: 22%;
@@ -15,8 +20,8 @@
     top: 126px; /* Adjust top position */
     bottom: 0;
     right: 0; /* Adjust right position */
+    z-index: 1000; /* Ensure above the chat box */
 }
-
 
 /* Navbar */
 .navbar {
@@ -123,15 +128,15 @@
 
 /* Chat Box */
 .chat-box {
-    margin-left: 220px; /* Adjusted margin to accommodate the sidebar */
+    margin-left: var(--sidebar-width); /* Adjusted margin to accommodate the sidebar */
     height: calc(100vh - 60px); /* Adjusted height to fit within the viewport */
     position: fixed;
     top: 60px; /* Adjusted top position to accommodate the navbar */
-    width: calc(100% - 242px); /* Adjusted width to fit between sidebar and right sidebar */
+    width: calc(100% - var(--sidebar-width) - var(--sidebar-width)); /* Adjusted width to fit between sidebar and right sidebar */
     background-color: rgb(246, 242, 242);
     padding-bottom: 100px;
     font-size: 14px;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 /* Name Box */
@@ -218,9 +223,9 @@
 /* Searchbar */
 .searchbar {
     position: fixed;
-    left: 220px; /* Adjusted left position to accommodate the sidebar */
+    left: var(--sidebar-width); /* Adjusted left position to accommodate the sidebar */
     bottom: 10px;
-    width: calc(100% - 262px - 60px); /* Adjusted width to fit between sidebar, right sidebar, and send button */
+    width: calc(100% - var(--sidebar-width) - var(--conversation-sidebar-width) - 10px); /* Adjusted width to fit between sidebar, right sidebar, and send button */
     display: flex;
     justify-content: space-around;
     border-radius: 10px;
@@ -257,7 +262,6 @@
     z-index: 1001;/* Ensure above the message box */
 }
 
-
 .send-button:hover {
     background-color: transparent;
 }
@@ -276,7 +280,7 @@
     bottom: 90px; /* Adjust bottom margin for send button */
     background-color: rgb(246, 242, 242);
     overflow-y: auto; /* Allow scrolling */
-    width: calc(100% - 264px); 
+    width: calc(100% - var(--sidebar-width) - var(--conversation-sidebar-width)); 
 }
 
 /* Chat Container */
@@ -374,9 +378,11 @@
         width: 100%;
         border-radius: 0;
     }
+
     .message-box {
         height: calc(100% - 95px);
     }
+
     .send-button {
         bottom: 50px;
     }
