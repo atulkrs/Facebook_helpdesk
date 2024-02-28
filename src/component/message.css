@@ -1,9 +1,5 @@
 /* Define CSS variables for easier adjustment */
-:root {
-    --sidebar-width: 70px;
-    --navbar-width: 50px;
-    --conversation-sidebar-width: 180px;
-}
+
 .sidebar-right,
 .card {
     z-index: 999; /* Lower z-index */
@@ -273,11 +269,12 @@
 
 /* Message Box */
 .message-box {
-    top: 0;
-    background-color: rgb(246, 242, 242);
     position: absolute;
-    overflow-y: scroll;
-    height: calc(100% - 60px);
+    top: 0;
+    bottom: 90px; /* Adjust bottom margin for send button */
+    background-color: rgb(246, 242, 242);
+    overflow-y: auto; /* Allow scrolling */
+    width: calc(100% - 264px); 
 }
 
 /* Chat Container */
@@ -353,29 +350,16 @@
 
 /* Media query for smaller screens */
 @media only screen and (max-width: 768px) {
-    .sidebar,
-    .navbar,
-    .conversation-sidebar,
-    .chat-box {
-        display: none;
-    }
-
-    .chat-info,
-    .row {
-        justify-content: center;
-    }
 
     .sidebar-right,
     .card {
         display: none; /* Hide the sidebar and card */
     }
+
     .searchbar {
         left: 0;
         width: 100%;
         border-radius: 0;
-    }
-    .message-box {
-        height: calc(100% - 95px);
     }
     .send-button {
         bottom: 50px;
