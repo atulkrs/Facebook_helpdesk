@@ -15,7 +15,6 @@ function Messenger() {
   // const [profilePictureUrl, setProfilePictureUrl] = useState("");
   const [page, setPage] = useState(null);
   const [updatedPage, setUpdatedPage] = useState(null);
-
   const [convodata, setConvoData] = useState(null);
   const [convo, setConvo] = useState(null);
   const [message, setMessage] = useState(null);
@@ -72,7 +71,7 @@ function Messenger() {
     try {
       // Make a GET request to the Facebook Graph API to retrieve messages
       const response = await axios.get(
-        `https://graph.facebook.com/v13.0/${page.id}/conversations?access_token=${page.access_token}`
+        `https://graph.facebook.com/v13.0/${page.id}/conversations?access_token=${page['access_token']}`
       );
 
       // Extract the data containing the messages
@@ -92,26 +91,7 @@ function Messenger() {
       // throw new Error('Error fetching Facebook page messages: ' + error.response.data.error.message);
     }
   }
-  async function refresh() {
-    try {
-      // Call the function to get the latest Facebook page messages
-      await getFacebookPageMessages();
-
-      // Update the conversation list with the latest data
-      if (updatedConvo !== null) {
-        const newData = [];
-        await Promise.all(
-          updatedConvo.map(async (conversation) => {
-            const messages = await getSenderName(conversation.id);
-            newData.push(messages);
-          })
-        );
-        setUpdatedConvoData(newData);
-      }
-    } catch (error) {
-      console.error("Error refreshing:", error);
-    }
-  }
+  
 
   async function getSenderName(convoId) {
     // try {
@@ -164,7 +144,7 @@ function Messenger() {
       console.log("convoid " + convo[0]["id"]);
       // Make a GET request to the Facebook Graph API to retrieve messages for the conversation
       const response = await axios.get(
-        `https://graph.facebook.com/v19.0/${convo[0]["id"]}/messages?access_token=${page.access_token}`
+        `https://graph.facebook.com/v19.0/${convo[0]["id"]}/messages?access_token=${page['access_token']}`
       );
       // Extract the data containing the messages
       const messag = response.data;
@@ -205,6 +185,10 @@ function Messenger() {
     }
     setUpdatedConvoData(data);
   }
+  function refresh(){
+        
+  }
+ 
 
   function getData(timeDifferenceInSeconds) {
     let displayTime;
@@ -257,7 +241,7 @@ function Messenger() {
       }
 
       const response = await axios.post(
-        `https://graph.facebook.com/v13.0/me/messages?access_token=${page.access_token}`,
+        `https://graph.facebook.com/v13.0/me/messages?access_token=${page['access_token']}`,
         {
           recipient: {
             id: recipientId,
