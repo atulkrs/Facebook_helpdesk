@@ -207,7 +207,7 @@
     position: fixed;
     left: 260px;
     height: 15px;
-    width: calc(100% - 620px); /* Increased width to create more space */
+    width: calc(100% - 530px);
     display: flex;
     bottom: 10px;
     justify-content: space-around;
@@ -319,7 +319,7 @@
 
 .actions {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: -8px; 
     gap: 10px; /* Horizontally center the buttons */
 }
@@ -328,13 +328,10 @@
     text-decoration: none; 
     font-weight: bold;
     margin:2px; /* Add some spacing between the buttons */
-    min-width: 80px; /* Adjust minimum width of buttons */
 }
 
 /* Media query for smaller screens */
 /* Media query for smaller screens */
-/* Media query for smaller screens */
-/* Adjustments for smaller screens */
 @media only screen and (max-width: 768px) {
     .sidebar {
         width: 50px; /* Adjust width for smaller screens */
@@ -346,7 +343,7 @@
 
     .chat-box {
         margin-left: 200px; /* Adjust margin for smaller screens */
-        width: calc(100% - 200px); /* Adjust width for smaller screens */
+        width: calc(100% - 300px); /* Adjust width for smaller screens */
     }
 
     .card {
@@ -363,32 +360,15 @@
 
     .searchbar {
         left: 200px; /* Adjust left position for smaller screens */
-        width: calc(100% - 460px); /* Adjust width for smaller screens */
+        width: calc(100% - 260px); /* Adjust width for smaller screens */
     }
 
     .message-box {
         height: 60%; /* Adjust height for smaller screens */
     }
-
+    
     .left,
     .right {
         max-width: 60%; /* Adjust max-width for smaller screens */
     }
-
-    /* Adjust position and size of call, profile button, etc. */
-    .profile-image {
-        margin-top: 150px; /* Adjust margin-top for smaller screens */
-    }
-
-    .inbox-link {
-        padding: 3px 8px; /* Adjust padding for smaller screens */
-    }
-
-    .action-button {
-        padding: 3px 10px; /* Adjust padding for smaller screens */
-    }
-     .actions {
-        justify-content: center; /* Center buttons on smaller screens */
-    }
 }
-
