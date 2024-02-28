@@ -340,20 +340,21 @@
     }
 
     .conversation-sidebar {
-        width: 150px; /* Adjust width for smaller screens */
+        width: 180px; /* Adjust width for smaller screens */
     }
 
     .chat-box {
         margin-left: 200px; /* Adjust margin for smaller screens */
-        width: calc(100% - 200px); /* Adjust width for smaller screens */
+        width: calc(100% - 400px); /* Adjust width for smaller screens */
     }
 
     .card {
-        width: 15%; /* Adjust width for smaller screens */
+        width: 15%;
+        height: 27%; /* Adjust width for smaller screens */
     }
 
     .card_1 {
-        width: 120px; /* Adjust width for smaller screens */
+        width: 170px; /* Adjust width for smaller screens */
     }
 
     .sidebar-right {
@@ -361,22 +362,25 @@
     }
 
     .searchbar {
-        left: 200px; /* Adjust left position for smaller screens */
-        width: calc(100% - 200px); /* Adjust width for smaller screens */
+        left: 140px; /* Adjust left position for smaller screens */
+        width: calc(100% - 250px); /* Adjust width for smaller screens */
     }
 
     .message-box {
-        height: 60%; /* Adjust height for smaller screens */
+        height: 67%; /* Adjust height for smaller screens */
     }
 
     .left,
     .right {
-        max-width: 60%; /* Adjust max-width for smaller screens */
+        max-width: 80%; /* Adjust max-width for smaller screens */
     }
 
     /* Adjust position and size of call, profile button, etc. */
     .profile-image {
-        margin-top: 150px; /* Adjust margin-top for smaller screens */
+        margin-top: 250px; /* Adjust margin-top for smaller screens */
+    }
+    .profile-info {
+        margin-left: 40px;/* Adjust margin-top for smaller screens */
     }
 
     .inbox-link {
