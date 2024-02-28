@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import React, { useState } from "react";
+// import Cookies from "js-cookie";
 import axios from "axios";
 import profile from "./img/hero.png";
 import image from "./img/avatar.jpg";
 import capture from "./img/new.jpeg";
-import Styles from "./message.css";
-import { json } from "react-router";
+import "./message.css";
+// import { json } from "react-router";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 // Correct path to Font Awesome CSS file
 import "remixicon/fonts/remixicon.css"; // Correct path to Remixicon CSS file
 
 function Messenger() {
-  const [profilePictureUrl, setProfilePictureUrl] = useState("");
+  // const [profilePictureUrl, setProfilePictureUrl] = useState("");
   const [page, setPage] = useState(null);
   const [updatedPage, setUpdatedPage] = useState(null);
 
@@ -25,8 +25,8 @@ function Messenger() {
   const [updatedConvo, setUpdatedConvo] = useState(null);
   const [selectedChatParticipant, setSelectedChatParticipant] = useState("");
   const [updatedMessage, setUpdatedMessage] = useState(null);
-  const [updatedNewMessage, setUpdatedNewMessage] = useState(null);
-  const [updatedCurrentConvo, setUpdatedCurrentConvo] = useState(null);
+  // const [updatedNewMessage, setUpdatedNewMessage] = useState(null);
+  // const [updatedCurrentConvo, setUpdatedCurrentConvo] = useState(null);
   const [reverse, setreverse] = useState(false);
   // const token=Cookies.get('token')
   const token =
@@ -58,7 +58,7 @@ function Messenger() {
     }
     const doc = document.getElementById("id" + index);
     doc.style.backgroundColor = "rgb(203, 203, 203)";
-    if (reverse == false) {
+    if (reverse === false) {
       console.log("hi");
       console.log(temp);
       setcurrentConvo(temp.reverse());
@@ -170,7 +170,7 @@ function Messenger() {
       setUpdatedMessage(messag);
       console.log(messag);
     } catch (error) {
-      console.log("Error fetching messages for conversation " + ": " + error);
+      console.log("Error fetching messages for conversation " + " : " + error);
     }
   }
 
@@ -259,9 +259,9 @@ function Messenger() {
     const ampm = indianDate.getHours() >= 12 ? "PM" : "AM";
 
     // Format the time in 12-hour format with AM/PM
-    const formattedTime = `${hours}:${
-      minutes < 10 ? "0" : ""
-    }${minutes} ${ampm}`;
+    const formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + ampm;
+
+
 
     return formattedTime;
   }

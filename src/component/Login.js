@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "./styles.css";
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ function LoginScreen() {
   };
 
   return (
+    <div style={{ backgroundColor: '#033366', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
     <div className="container">
       <h2>Login to your account</h2>
       <form onSubmit={handleSubmit}>
@@ -64,6 +66,7 @@ function LoginScreen() {
         <button type="submit">Login</button>
       </form>
       <p>New to MyApp? <Link to="/register">Sign Up</Link></p>
+    </div>
     </div>
   );
 }

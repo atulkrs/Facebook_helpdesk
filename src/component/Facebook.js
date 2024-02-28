@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './facebook.css'; // Import the CSS file
+import React, { useState, useEffect, useCallback } from 'react';
+import "./facebook.css"; // Import the CSS file
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
@@ -9,8 +9,31 @@ function ConnectPage() {
   const [sdkLoaded, setSdkLoaded] = useState(false);
   const [loggedin, setLoggedin] = useState(false);
   const [token, setToken] = useState(null);
-  const [userid, setUserid] = useState(null);
   const [pageName, setPageName] = useState('');
+
+  const getFacebookPages = useCallback(async () => {
+    try {
+      // Make a GET request to the Facebook Graph API to retrieve the user's pages
+      const response = await axios.get(`https://graph.facebook.com/v13.0/me/accounts?access_token=${token}`);
+       console.log(`https://graph.facebook.com/v13.0/me/accounts?access_token=${token}`)
+      // Extract the data containing the user's pages
+      const pagesData = response.data.data;
+      console.log(response.data)
+      setPageName(pagesData[0]['name'])
+      // Map the pages data to extract relevant information
+      const pages = pagesData.map(page => ({
+        name: page.name,
+        id: page.id,
+        accessToken: page.access_token
+      }));
+
+      // Return the array of Facebook pages
+      return pages;
+    } catch (error) {
+      // If an error occurs, throw it so it can be caught by the caller
+      throw new Error('Error fetching Facebook pages: ' + error.response.data.error.message);
+    }
+  }, [token]);
 
   useEffect(() => {
     function loadFacebookSDK() {
@@ -45,29 +68,6 @@ function ConnectPage() {
     }(document, 'script', 'facebook-jssdk'));
 
   }, []);
-  async function getFacebookPages() {
-    try {
-      // Make a GET request to the Facebook Graph API to retrieve the user's pages
-      const response = await axios.get(`https://graph.facebook.com/v13.0/me/accounts?access_token=${token}`);
-       console.log(`https://graph.facebook.com/v13.0/me/accounts?access_token=${token}`)
-      // Extract the data containing the user's pages
-      const pagesData = response.data.data;
-      console.log(response.data)
-      setPageName(pagesData[0]['name'])
-      // Map the pages data to extract relevant information
-      const pages = pagesData.map(page => ({
-        name: page.name,
-        id: page.id,
-        accessToken: page.access_token
-      }));
-
-      // Return the array of Facebook pages
-      return pages;
-    } catch (error) {
-      // If an error occurs, throw it so it can be caught by the caller
-      throw new Error('Error fetching Facebook pages: ' + error.response.data.error.message);
-    }
-  }
 
   const handleFacebookLogin = () => {
     if (sdkLoaded) {
@@ -75,7 +75,6 @@ function ConnectPage() {
         if (response.authResponse) {
           console.log('User logged in:', response.authResponse['accessToken']);
           setToken(response.authResponse['accessToken'])
-          setUserid(response.authResponse['userID'])
           Cookies.set('token', response.authResponse['accessToken'])
           setLoggedin(true)
         } else {
@@ -111,11 +110,12 @@ function ConnectPage() {
       }
       fetchData();
     }
-  }, [loggedin]);
+  }, [loggedin, getFacebookPages]);
 
   if (loggedin) {
     return (
-      <div className="container">
+      <div style={{ backgroundColor: '#033366', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="container_1">
         <h1><span className="medium-bold">Facebook Page Integration</span></h1>
         <h1><span className="not-bold">Integrated Page:</span><strong className="bold-text">{pageName}</strong></h1>
         <div className="buttons">
@@ -125,10 +125,11 @@ function ConnectPage() {
           <Link to='/messenger' className="message-button">Reply To Messages</Link>
         </div>
       </div>
+      </div>
     );
   } else {
     return (
-      <div className="container">
+      <div className="container_2">
         <h1>Facebook Page Integration</h1>
         {!sdkLoaded ? (
           <p>Loading Facebook SDK...</p>
