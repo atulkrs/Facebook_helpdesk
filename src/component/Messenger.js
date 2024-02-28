@@ -25,8 +25,6 @@ function Messenger() {
   const [updatedConvo, setUpdatedConvo] = useState(null);
   const [selectedChatParticipant, setSelectedChatParticipant] = useState("");
   const [updatedMessage, setUpdatedMessage] = useState(null);
-  // const [updatedNewMessage, setUpdatedNewMessage] = useState(null);
-  // const [updatedCurrentConvo, setUpdatedCurrentConvo] = useState(null);
   const [reverse, setreverse] = useState(false);
   // const token=Cookies.get('token')
   const token =
@@ -48,6 +46,7 @@ function Messenger() {
     } catch (error) {
       // If an error occurs, throw it so it can be caught by the caller
       // throw new Error('Error fetching Facebook pages: ' + error.response.data.error.message);
+      console.error("Error fetching Facebook pages:", error);
     }
   }
   function loadMessages(data, index) {
@@ -73,7 +72,7 @@ function Messenger() {
     try {
       // Make a GET request to the Facebook Graph API to retrieve messages
       const response = await axios.get(
-        `https://graph.facebook.com/v13.0/${page["id"]}/conversations?access_token=${page["access_token"]}`
+        `https://graph.facebook.com/v13.0/${page.id}/conversations?access_token=${page.access_token}`
       );
 
       // Extract the data containing the messages
@@ -88,7 +87,7 @@ function Messenger() {
       console.log(messag);
       setUpdatedConvo(messag);
     } catch (error) {
-      console.error('Error fetching Facebook page messages:', error);
+      console.error("Error fetching Facebook page messages:", error);
       // If an error occurs, throw it so it can be caught by the caller
       // throw new Error('Error fetching Facebook page messages: ' + error.response.data.error.message);
     }
@@ -97,21 +96,23 @@ function Messenger() {
     try {
       // Call the function to get the latest Facebook page messages
       await getFacebookPageMessages();
-  
+
       // Update the conversation list with the latest data
       if (updatedConvo !== null) {
         const newData = [];
-        await Promise.all(updatedConvo.map(async (conversation) => {
-          const messages = await getSenderName(conversation.id);
-          newData.push(messages);
-        }));
+        await Promise.all(
+          updatedConvo.map(async (conversation) => {
+            const messages = await getSenderName(conversation.id);
+            newData.push(messages);
+          })
+        );
         setUpdatedConvoData(newData);
       }
     } catch (error) {
-      console.error('Error refreshing:', error);
+      console.error("Error refreshing:", error);
     }
   }
-  
+
   async function getSenderName(convoId) {
     // try {
     //     // Step 1: Fetch messages from the conversation
@@ -125,7 +126,7 @@ function Messenger() {
     try {
       let allMessages = [];
 
-      let url = `https://graph.facebook.com/v12.0/${convoId}/messages?fields=id,message,created_time,from&access_token=${page["access_token"]}`;
+      let url = `https://graph.facebook.com/v12.0/${convoId}/messages?fields=id,message,created_time,from&access_token=${page.access_token}`;
 
       // Fetch messages from the first page
       let response = await axios.get(url);
@@ -163,14 +164,14 @@ function Messenger() {
       console.log("convoid " + convo[0]["id"]);
       // Make a GET request to the Facebook Graph API to retrieve messages for the conversation
       const response = await axios.get(
-        `https://graph.facebook.com/v19.0/${convo[0]["id"]}/messages?access_token=${page["access_token"]}`
+        `https://graph.facebook.com/v19.0/${convo[0]["id"]}/messages?access_token=${page.access_token}`
       );
       // Extract the data containing the messages
       const messag = response.data;
       setUpdatedMessage(messag);
       console.log(messag);
     } catch (error) {
-      console.log("Error fetching messages for conversation " + " : " + error);
+      console.log("Error fetching messages for conversation:", error);
     }
   }
 
@@ -205,43 +206,20 @@ function Messenger() {
     setUpdatedConvoData(data);
   }
 
-
   function getData(timeDifferenceInSeconds) {
-    // Get the current date
-    const currentDate = new Date();
-
-    // Convert time difference to milliseconds
-    const timeDifferenceInMilliseconds = timeDifferenceInSeconds * 1000;
-
-    // Calculate the timestamp of the message
-    const messageTimestamp = currentDate.getTime() - timeDifferenceInMilliseconds;
-
-    // Convert timestamp to a Date object
-    const messageDate = new Date(messageTimestamp);
-    const messageDay = messageDate.getDate();
-    const messageMonth = messageDate.getMonth();
-    const messageYear = messageDate.getFullYear();
-
-    // Get the current date components
-    const currentDay = currentDate.getDate();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-
-    // Check if the message is from today
-    if (messageDay === currentDay && messageMonth === currentMonth && messageYear === currentYear) {
-      return "Today";
+    let displayTime;
+    if (timeDifferenceInSeconds < 60) {
+      displayTime = `${parseInt(timeDifferenceInSeconds)} s`;
+    } else {
+      const timeDifferenceInMinutes = timeDifferenceInSeconds / 60;
+      if (timeDifferenceInMinutes < 60) {
+        displayTime = `${parseInt(timeDifferenceInMinutes)} m`;
+      } else {
+        const timeDifferenceInHours = timeDifferenceInMinutes / 60;
+        displayTime = `${parseInt(timeDifferenceInHours)} h`;
+      }
     }
-
-    // Check if the message is from yesterday
-    const yesterdayDate = new Date(currentDate);
-    yesterdayDate.setDate(currentDay - 1);
-    if (messageDay === yesterdayDate.getDate() && messageMonth === yesterdayDate.getMonth() && messageYear === yesterdayDate.getFullYear()) {
-      return "Yesterday";
-    }
-
-    // If the message is not from today or yesterday, return the formatted date
-    const options = { month: "short", day: "numeric" };
-    return messageDate.toLocaleDateString("en-US", options);
+    return displayTime;
   }
 
   function convertToIndianTime12HourFormat(timestampString) {
@@ -259,16 +237,15 @@ function Messenger() {
     const ampm = indianDate.getHours() >= 12 ? "PM" : "AM";
 
     // Format the time in 12-hour format with AM/PM
-    const formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + ampm;
-
-
+    const formattedTime = `${hours}:${
+      minutes < 10 ? "0" : ""
+    }${minutes} ${ampm}`;
 
     return formattedTime;
   }
   const handlechange = (e) => {
     setNewMessage(e.target.value);
   };
-
   async function sendMessage() {
     try {
       let recipientId = "";
@@ -280,7 +257,7 @@ function Messenger() {
       }
 
       const response = await axios.post(
-        `https://graph.facebook.com/v13.0/me/messages?access_token=${page["access_token"]}`,
+        `https://graph.facebook.com/v13.0/me/messages?access_token=${page.access_token}`,
         {
           recipient: {
             id: recipientId,
@@ -314,23 +291,29 @@ function Messenger() {
 
   return (
     <>
-      <div class="navbar">
-        <nav class="navigation">
-          <a href="#first">
-            <img src={profile} alt="Profile Image" class="title-image" />
-          </a>
-          <a href="#second" className="inbox-link">
-            <i class="fas fa-inbox"></i>
-          </a>
-          <a href="#third">
-            <i class="fa fa-user-group"></i>
-          </a>
-          <a href="#fourth">
-            <i class="fas fa-chart-line"></i>
-          </a>
-          <a href="#fifth" class="profile-link">
-            <img src={image} alt="Profile Image" class="profile-image" />
-          </a>
+      <div className="navbar">
+        <nav className="navigation">
+          <button onClick={() => (window.location.href = "#first")}>
+            <img src={profile } alt="Profile logo" className="title-image" />
+          </button>
+          <button
+            onClick={() => (window.location.href = "#second")}
+            className="inbox-link"
+          >
+            <i className="fas fa-inbox"></i>
+          </button>
+          <button onClick={() => (window.location.href = "#third")}>
+            <i className="fa fa-user-group" style={{ backgroundColor: "#52359c" }}></i>
+          </button>
+          <button onClick={() => (window.location.href = "#fourth")}>
+            <i className="fas fa-chart-line" style={{ backgroundColor: "#52359c" }}></i>
+          </button>
+          <button
+            onClick={() => (window.location.href = "#fifth")}
+            className="profile-link"
+          >
+            <img src={image} alt="Profile logo" className="profile-image" />
+          </button>
         </nav>
       </div>
       <div className="conversation-sidebar">
@@ -355,7 +338,7 @@ function Messenger() {
           <i
             className="fas fa-sync"
             onClick={refresh}
-            style={{ backgroundColor: "transparent", cursor:"pointer" }}
+            style={{ backgroundColor: "transparent", cursor: "pointer" }}
           ></i>
         </div>
         <hr />
@@ -378,12 +361,12 @@ function Messenger() {
                     >
                       <span
                         style={{
-                          fontSize: "12px",
+                          fontSize: "14px", padding: "5px"
                         }}
                       >
                         {data[0]["from"]["name"]}
                       </span>
-                      <p style={{ fontSize: "10px" }}>Facebook DM</p>
+                      <p style={{ fontSize: "10px", margin:"10px" }}>Facebook DM</p>
                     </div>
 
                     <p>
@@ -406,37 +389,41 @@ function Messenger() {
           <h2>{selectedChatParticipant}</h2>
         </div>
         <div className="=message-box">
-        <div className="chat-container">
-  {currentconvo === null && <h1></h1>}
-  {currentconvo !== null &&
-    currentconvo.slice(0).reverse().map((data, index) => {
-      if (data["from"]["name"] === "TaskCreativity") {
-        if (data["message"] !== "") {
-          return (
-            <>
-              <div className="right">{data["message"]}</div>
-              <span className="timestamp-right">
-                you&nbsp;
-                {convertToIndianTime12HourFormat(data.created_time)}
-              </span>
-            </>
-          );
-        }
-      } else {
-        if (data["message"] !== "") {
-          return (
-            <>
-              <div className="left">{data["message"]}</div>
-              <span className="timestamp-left">
-                {data["from"]["name"]}{" "}
-                {convertToIndianTime12HourFormat(data.created_time)}
-              </span>
-            </>
-          );
-        }
-      }
-    })}
-</div>
+          <div className="chat-container">
+            {currentconvo === null && null}
+            {currentconvo !== null &&
+              currentconvo
+                .slice(0)
+                .reverse()
+                .map((data, index) => {
+                  if (data["from"]["name"] === "TaskCreativity") {
+                    if (data["message"] !== "") {
+                      return (
+                        <>
+                          <div className="right">{data["message"]}</div>
+                          <span className="timestamp-right">
+                            you&nbsp;
+                            {convertToIndianTime12HourFormat(data.created_time)}
+                          </span>
+                        </>
+                      );
+                    }
+                  } else {
+                    if (data["message"] !== "") {
+                      return (
+                        <>
+                          <div className="left">{data["message"]}</div>
+                          <span className="timestamp-left">
+                            {data["from"]["name"]}{" "}
+                            {convertToIndianTime12HourFormat(data.created_time)}
+                          </span>
+                        </>
+                      );
+                    }
+                  }
+                  return null;
+                })}
+          </div>
         </div>
       </div>
       <form onSubmit={sayHello}>
@@ -458,7 +445,7 @@ function Messenger() {
       </form>
       <div class="card">
         <div class="profile-info">
-          <img src={capture} alt="Profile Image" />
+          <img src={capture} alt="Profile logo" />
           <h2>Task Creativity</h2>
           <p class="status">
             <span
@@ -474,44 +461,46 @@ function Messenger() {
             Online
           </p>
         </div>
-        <div class="actions">
-          <a href="#" class="action-button">
+        <div className="actions">
+          <button className="action-button" onClick={() => {}}>
             <i
               className="fas fa-phone"
               style={{ color: "#2da764", outlineColor: "black" }}
             ></i>
             <span style={{ paddingLeft: "5px", color: "#2da764" }}>Call</span>
-          </a>
-          <a href="#" class="action-button">
+          </button>
+          <button className="action-button" onClick={() => {}}>
             <i className="fas fa-user" style={{ color: "#2da764" }}></i>
             <span style={{ paddingLeft: "5px", color: "#2da764" }}>
               Profile
             </span>
-          </a>
+          </button>
         </div>
       </div>
 
-      <div class="sidebar-right">
-        <div class="card_1">
-          <div class="customer-details">
+      <div className="sidebar-right">
+        <div className="card_1">
+          <div className="customer-details">
             <h3>Customer details</h3>
-            <a>
+            <p>
               Email
-              <span style={{ marginLeft: "60px" }}> atul.richpanel.com</span>
-            </a>
+              <span style={{ marginLeft: "53px", fontWeight: "bold" }}> atul.richpanel.com</span>
+            </p>
+            <p>
+              First Name
+              <span style={{ marginLeft: "98px", fontWeight: "bold"}}> Atul</span>
+            </p>
+            <p>
+              Last Name
+              <span style={{ marginLeft: "91px", fontWeight: "bold" }}> Singh</span>
+            </p>
             <br />
-            <a>
-              First Name<span style={{ marginLeft: "100px" }}> Atul</span>
-            </a>
-            <br />
-            <a>
-              Last Name<span style={{ marginLeft: "94px" }}> singh</span>
-            </a>
-            <br />
-            <br />
-            <a href="#" style={{ fontWeight: "bold", color: "#495ea3" }}>
+            <p
+              className="view-details-text"
+              onClick={() => {}}
+            >
               View more details
-            </a>
+              </p>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css'; // Make sure to import your CSS file
+import './new.css'; // Make sure to import your CSS file
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -45,14 +45,15 @@ function SignUpForm() {
   };
 
   return (
-    <div className="container">
+    <div className="signup">
+    <div className="signup_container"> 
       <form onSubmit={handleSubmit}>
         <h2>Create Account</h2>
-        <div className="input-group">
+        <div className="signup_input-group">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" id="name" placeholder="Your Name" value={formData.name} onChange={handleChange} />
         </div>
-        <div className="input-group">
+        <div className="signup_input-group">
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" placeholder="Your Email" value={formData.email} onChange={handleChange} />
         </div>
@@ -60,15 +61,17 @@ function SignUpForm() {
           <label htmlFor="password">Password</label>
           <input type="password" name="password" id="password" placeholder="Your Password" value={formData.password} onChange={handleChange} />
         </div>
-        <div className="checkbox">
+        <div className="signup_checkbox">
           <label htmlFor="remember">
             <input type="checkbox" name="remember" id="remember" checked={formData.remember} onChange={handleChange} /> Remember Me
           </label>
         </div>
-        <button type="submit">Sign Up</button>
-        <p>Already have an account? <Link to="/">Login</Link></p>
+        <button type="submit" className="signup_button">Sign Up</button>
+        <p>Already have an account? <Link to="/" className="login-link">Login</Link></p>
       </form>
     </div>
+    </div>
+    
   );
 }
 

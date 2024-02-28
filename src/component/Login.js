@@ -63,7 +63,7 @@ function LoginScreen() {
             <input type="checkbox" name="remember" id="remember" /> Remember Me
           </label>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="signin_button">Login</button>
       </form>
       <p>New to MyApp? <Link to="/register">Sign Up</Link></p>
     </div>
