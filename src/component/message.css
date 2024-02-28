@@ -268,9 +268,10 @@
 .chat-container {
     background-color: rgb(246, 242, 242);
     display: flex;
+    margin-right: 20px;
     flex-direction: column-reverse;
     overflow-y: scroll; /* Changed to scroll */
-    height:318px;
+    height:450px;
     
 }
 
