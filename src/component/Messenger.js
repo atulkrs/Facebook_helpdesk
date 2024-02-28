@@ -422,7 +422,7 @@ function Messenger() {
             ></input>
 
             <button class="send-button">
-              <i class="fas fa-paper-plane"></i>
+              {/* <i class="fas fa-paper-plane"></i> */}
             </button>
           </div>
         </div>
