@@ -1,0 +1,390 @@
+
+
+body {
+    background-color: white; /* Or any other color you want */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.sidebar{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    width: 50px;
+    left: 0;
+}
+.navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: #52359c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1001;
+}
+.navbar nav {
+    display: flex;
+    flex-direction: column;
+align-items: center;
+padding: 5px ;
+}
+
+  
+  .title-image {
+    width: 30px;
+    height: 30px;
+    background-color: #52359c;
+     /* Adjust the font size as needed */
+  }
+  .profile-image {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px;
+    margin-top: 200px;
+    border-radius: 15px;/* Adjust the height as needed */
+  }
+  
+  .profile-info img{
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 30px;
+    position: absolute;
+    right: 80px; /* Adjust the distance from the right side */
+    top: 0; /* Adjust the distance from the top */
+    z-index: 1001;   /* Adjust the font size as needed */
+  }
+  
+.profile-info h2 {
+    margin-top: 45px; /* Adjust this value to add space between the image and text */
+}
+.status {
+    margin-top: -25px; /* Adjust this value to add space between the text and status */
+}
+
+  
+.navbar nav a {
+color: #fff;
+font-size: 20px;
+text-decoration: none;
+margin-bottom: 10px;
+}
+.inbox-link {
+    display: inline-block;
+    background-color: white;
+    padding: 5px; /* Adjust padding as needed */
+     /* Ensures the box is circular */
+}
+
+
+.inbox-link i {
+    color: #52359c; /* Set the icon color */
+    font-size: 20px; /* Adjust icon size as needed */
+    padding: 5px; /* Adjust padding around icon */
+}
+
+
+.icon{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+}
+.icon-white{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    background-color: white;
+    color: rgb(195, 118, 30);
+}
+.conversation-sidebar{
+    padding-top: 10px;
+    position: fixed;
+    left: 40px;
+    height: 100vh;
+    width: 180px;
+    background-color: rgb(255, 255, 255);
+}
+.conversation-sidebar .ri-bar-chart-horizontal-line {
+    color: rgb(27, 2, 2) !important;
+}
+
+.row{
+ display: flex;
+ justify-content: space-around;
+}
+.chat-info{
+    background-color: transparent;
+    display: flex;
+    font-size: 8px;
+    height: 25px;
+    align-items: center;
+    justify-content: space-around ;
+}
+.chat-info:hover{
+   background-color: rgb(199, 196, 203);
+   cursor: pointer;
+}
+.chat-box {
+    margin-left: 220px;
+    height: 0; /* Adjusted height to accommodate searchbar */
+    position: fixed;
+    top: 0;
+ /* Adjusted width */
+    width: calc(100% - 435px);
+    background-color: rgb(246, 242, 242);
+    padding-bottom: 100px;
+    font-size: 14px; /* Added padding to accommodate searchbar */
+}
+.name-box {
+    background-color: #f0f0f0; 
+    font-size: 9px;
+    padding: 3px 9px;
+    border-bottom: 1px solid #ccc;
+    height: 30px;
+}
+
+.card {
+    width: 22%;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 10px;
+    position: fixed;
+    height: 105px;
+    right: 0; /* Adjust the distance from the right side */
+    top: 0; /* Adjust the distance from the top */
+    z-index: 1001; /* Ensure the card is above the sidebar */
+}
+/* Style for action buttons */
+/* Style for action buttons */
+.action-button { 
+    padding: 5px 15px; /* Adjust padding as needed */
+/* Adjust margin between buttons */
+    background-color: #e0e0e7; /* Button background color */
+    color: #693636; 
+    border-radius: 10px;
+    /* Button text color */
+    border: 1px solid black;
+    outline:none; 
+}
+
+.action-button:hover {
+    background-color: #b3a0a6; /* Hover background color */
+}
+
+/* Ensure actions are displayed in the same row */
+
+
+
+
+  .card a {
+    text-decoration: none;
+    color: #d8dadb;
+    font-weight: bold;
+  }
+  .card_1 {
+    height: 35%;
+    flex-direction: column;
+    /* Change position to absolute */
+    top: 60px;
+    border-radius: 10px;
+    right: 4px; /* Adjust this value as needed */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    z-index: 1001; /* Ensure the card_1 is above the sidebar */
+    width: 170px;
+}
+.customer-details {
+    font-size: 10px;
+    margin-top: -10px;
+   
+}
+
+.sidebar-right {
+    width: 22%;
+    background-color: #dad2d2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    position: fixed;
+    right:0; /* Adjust the distance from the right side */
+    top: 126px; /* Adjust the distance from the top */
+    bottom: 0;
+   /* Adjust height to avoid overlap */
+    z-index: 1000; /* Ensure the sidebar is behind the card */
+}
+
+
+.searchbar {
+    position: fixed;
+    left: 260px;
+    height: 15px;
+    width: calc(100% - 530px);
+    display: flex;
+    bottom: 30px;
+    justify-content: space-around;
+    border-radius: 10px;
+    border: solid 1px black;
+    background-color: white; /* Added background color */
+    padding: 10px; /* Added padding for better appearance */
+}
+
+
+
+
+/* Send button */
+.send-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: black;
+}
+.send-button:hover {
+       background-color: transparent;
+}
+
+.searchbar input {
+    border: none;
+    outline: none;
+ 
+    flex: 1; /* Allow input to expand */
+}
+
+.message-box {
+    
+    top: 0;
+    background-color: rgb(246, 242, 242);
+    position: absolute;
+    overflow-y: scroll; /* Changed to scroll */
+   height: 80%; /* Adjusted height to accommodate searchbar */
+}
+
+.chat-container {
+    background-color: rgb(246, 242, 242);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll; /* Changed to scroll */
+    height:300px;
+    
+}
+
+.left {
+    margin-left: 10px;
+    align-self: flex-start;
+    background-color: #d3d3d3;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    max-width: 70%;
+    font-size: 10px;  /* Adjust the maximum width of left messages */
+}
+.right {
+    margin-right: 10px;
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    max-width: 70%;
+    font-size: 10px; /* Adjusted font size */
+}
+
+.timestamp-right {
+    
+    align-self: flex-end;
+    width: fit-content;
+    background-color: aliceblue;
+    font-size: 10px; /* Adjust the font size as needed */
+    color: #242424; /* Adjust the color of the timestamp */
+    /* margin-top: 5px; Adjust the margin top for spacing */
+}
+.timestamp-left {
+    margin-bottom: 10px;
+    align-self: flex-start;
+    width: fit-content;
+    background-color: aliceblue;
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #242424; /* Adjust the color of the timestamp */
+    /* margin-top: 5px; Adjust the margin top for spacing */
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: -8px; 
+    gap: 10px; /* Horizontally center the buttons */
+}
+
+.actions a {
+    text-decoration: none; 
+    font-weight: bold;
+    margin:2px; /* Add some spacing between the buttons */
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .navbar {
+        width: 30px; /* Adjust width for smaller screens */
+    }
+
+    .sidebar {
+        width: 40px; /* Adjust width for smaller screens */
+    }
+
+    .chat-box {
+        margin-left: 90px; /* Adjust margin for smaller screens */
+    }
+
+    .card {
+        width: 20%; /* Adjust width for smaller screens */
+    }
+
+    .sidebar-right {
+        width: 20%; /* Adjust width for smaller screens */
+    }
+
+    .searchbar {
+        left: 150px; /* Adjust left position for smaller screens */
+        width: calc(100% - 290px); /* Adjust width for smaller screens */
+    }
+}
+
+/* Media query for extra small screens */
+@media screen and (max-width: 576px) {
+    .navbar {
+        display: none; /* Hide navbar for extra small screens */
+    }
+
+    .sidebar {
+        width: 100%; /* Adjust width for full width on extra small screens */
+    }
+
+    .chat-box {
+        margin-left: 0; /* Remove left margin for full width on extra small screens */
+        width: 100%; /* Adjust width for full width on extra small screens */
+    }
+
+    .card,
+    .sidebar-right {
+        display: none; /* Hide card and sidebar-right for extra small screens */
+    }
+
+    .searchbar {
+        left: 0; /* Adjust left position for full width on extra small screens */
+        width: 100%; /* Adjust width for full width on extra small screens */
+    }
+}

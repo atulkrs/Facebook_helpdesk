@@ -1,0 +1,127 @@
+
+body {
+    background-color: #033366; /* Blue color */
+  }
+
+  .container {
+    font-size: 8px;
+    width: 280px;
+    height: 100px; /* Adjust the height as needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .facebook-button {
+    background-color: #3B5998;
+    width: 200px;
+    height: 10px;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add margin to separate the button from the heading */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    text-decoration: none;
+    
+  }
+  
+  .facebook-button:hover {
+    opacity: 0.7;
+  }
+  /* Delete.css */
+body {
+    background-color: #033366; /* Blue color */
+}
+
+.container {
+    font-size: 8px;
+    width: 280px;
+    height: auto; /* Adjust the height as needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-button {
+    background-color: #3B5998;
+    width: 200px;
+    height: 10px;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add margin to separate the button from the heading */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    text-decoration: none;
+}
+
+.medium-bold {
+    font-weight: 500; /* Adjust the font weight as needed */
+}
+
+.not-bold {
+    font-weight: normal;
+}
+
+.bold-text {
+    font-weight: bold; /* Adjust the font weight as needed */
+}
+
+.delete-button {
+    background-color: #ee6d16;
+    width: 200px;
+    height: 10px;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add margin to separate the button from the heading */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    text-decoration: none;
+}
+
+.facebook-button:hover {
+    opacity: 0.7;
+}
