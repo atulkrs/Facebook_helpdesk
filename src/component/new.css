@@ -1,73 +1,60 @@
-body {
-    background-color: #033366; /* Set background color to blue */
-     /* Set text color to white */
-  }
-  
+
 
 .signup_container {
-    width: 220px;
-    height: 250px;
-    font-size: 11px;
+    width: 80%; /* Set initial width */
+    max-width: 300px; /* Set maximum width */
+    height: auto;
+    font-size: 14px;
     margin: 40px auto;
     background-color: #fff;
     border-radius: 15px;
-    padding: 20px 20px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .signup h2 {
     text-align: center;
-    margin-bottom: 2px;
-    margin-top: 0;
+    margin: 0 0 10px;
 }
 
 .signup_input-group {
-    margin-bottom: 0;
-    font-size: 13px;
+    margin-bottom: 10px;
 }
 
 .signup_label {
-    display: block;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .signup_container input[type="text"],
 .signup_container input[type="email"],
 .signup_container input[type="password"] {
-    width: 94%;
-    padding: 4px;
-    right: 10px;
+    width: 100%;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 7px;
-    font-size: 12px;
-    margin: 0;
-
+    font-size: 14px;
 }
 
 .signup_checkbox {
-    margin-bottom: 8px;
-
+    margin-bottom: 10px;
 }
 
 .signup_checkbox label {
     font-size: 14px;
 }
-.signup .signup_input-group {
-    margin-bottom: 4px;
-    font-size: 13px;
-}
 
 .signup_button {
-    display: block;
-    width: 101%;
-    padding: 5px;
-    background-color:#52359c;
+    width: 100%;
+    padding: 10px;
+    background-color: #52359c;
     color: #fff;
     border: none;
     border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
 }
+
 .signup p {
     text-align: center;
     font-size: 14px;
@@ -80,4 +67,16 @@ body {
 
 .signup a:hover {
     text-decoration: underline;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    .signup_container {
+        width: 90%; /* Adjust width for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .signup_button {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
 }

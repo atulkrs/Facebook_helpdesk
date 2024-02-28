@@ -129,6 +129,7 @@ function ConnectPage() {
     );
   } else {
     return (
+      <div style={{ backgroundColor: '#033366', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div className="container_2">
         <h1>Facebook Page Integration</h1>
         {!sdkLoaded ? (
@@ -138,6 +139,7 @@ function ConnectPage() {
             <button className="facebook-button" onClick={handleFacebookLogin}>Connect Page</button>
           </div>
         )}
+      </div>
       </div>
 
     );

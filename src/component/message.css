@@ -95,7 +95,7 @@
     display: flex;
     user-select: none;
     font-size: 8px;
-    height: 25px;
+    height: 30px;
     align-items: center;
     justify-content: space-around ;
 }
@@ -112,7 +112,7 @@
     position: fixed;
     top: 0;
  /* Adjusted width */
-    width: calc(100% - 435px);
+    width: calc(100% - 430px);
     background-color: rgb(246, 242, 242);
     padding-bottom: 100px;
     font-size: 14px; /* Added padding to accommodate searchbar */
@@ -207,7 +207,7 @@
     position: fixed;
     left: 260px;
     height: 15px;
-    width: calc(100% - 530px);
+    width: calc(100% - 620px); /* Increased width to create more space */
     display: flex;
     bottom: 10px;
     justify-content: space-around;
@@ -319,7 +319,7 @@
 
 .actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: -8px; 
     gap: 10px; /* Horizontally center the buttons */
 }
@@ -328,6 +328,67 @@
     text-decoration: none; 
     font-weight: bold;
     margin:2px; /* Add some spacing between the buttons */
+    min-width: 80px; /* Adjust minimum width of buttons */
 }
 
 /* Media query for smaller screens */
+/* Media query for smaller screens */
+/* Media query for smaller screens */
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        width: 50px; /* Adjust width for smaller screens */
+    }
+
+    .conversation-sidebar {
+        width: 150px; /* Adjust width for smaller screens */
+    }
+
+    .chat-box {
+        margin-left: 200px; /* Adjust margin for smaller screens */
+        width: calc(100% - 200px); /* Adjust width for smaller screens */
+    }
+
+    .card {
+        width: 15%; /* Adjust width for smaller screens */
+    }
+
+    .card_1 {
+        width: 120px; /* Adjust width for smaller screens */
+    }
+
+    .sidebar-right {
+        width: 15%; /* Adjust width for smaller screens */
+    }
+
+    .searchbar {
+        left: 200px; /* Adjust left position for smaller screens */
+        width: calc(100% - 460px); /* Adjust width for smaller screens */
+    }
+
+    .message-box {
+        height: 60%; /* Adjust height for smaller screens */
+    }
+
+    .left,
+    .right {
+        max-width: 60%; /* Adjust max-width for smaller screens */
+    }
+
+    /* Adjust position and size of call, profile button, etc. */
+    .profile-image {
+        margin-top: 150px; /* Adjust margin-top for smaller screens */
+    }
+
+    .inbox-link {
+        padding: 3px 8px; /* Adjust padding for smaller screens */
+    }
+
+    .action-button {
+        padding: 3px 10px; /* Adjust padding for smaller screens */
+    }
+     .actions {
+        justify-content: center; /* Center buttons on smaller screens */
+    }
+}
+

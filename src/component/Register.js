@@ -45,31 +45,31 @@ function SignUpForm() {
   };
 
   return (
-    <div className="signup">
-    <div className="signup_container"> 
-      <form onSubmit={handleSubmit}>
-        <h2>Create Account</h2>
-        <div className="signup_input-group">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Your Name" value={formData.name} onChange={handleChange} />
-        </div>
-        <div className="signup_input-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Your Email" value={formData.email} onChange={handleChange} />
-        </div>
-        <div className="input-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" placeholder="Your Password" value={formData.password} onChange={handleChange} />
-        </div>
-        <div className="signup_checkbox">
-          <label htmlFor="remember">
-            <input type="checkbox" name="remember" id="remember" checked={formData.remember} onChange={handleChange} /> Remember Me
-          </label>
-        </div>
-        <button type="submit" className="signup_button">Sign Up</button>
-        <p>Already have an account? <Link to="/" className="login-link">Login</Link></p>
-      </form>
-    </div>
+    <div style={{ backgroundColor: '#033366', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="signup_container" style={{ width: '80%', maxWidth: '300px', padding: '20px', borderRadius: '15px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff' }}> 
+        <form onSubmit={handleSubmit}>
+          <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>Create Account</h2>
+          <div className="signup_input-group" style={{ marginBottom: '10px' }}>
+            <label htmlFor="name" style={{ marginBottom: '5px' }}>Name</label>
+            <input type="text" name="name" id="name" placeholder="Your Name" value={formData.name} onChange={handleChange} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '7px', fontSize: '14px' }} />
+          </div>
+          <div className="signup_input-group" style={{ marginBottom: '10px' }}>
+            <label htmlFor="email" style={{ marginBottom: '5px' }}>Email</label>
+            <input type="email" name="email" id="email" placeholder="Your Email" value={formData.email} onChange={handleChange} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '7px', fontSize: '14px' }} />
+          </div>
+          <div className="input-group" style={{ marginBottom: '10px' }}>
+            <label htmlFor="password" style={{ marginBottom: '5px' }}>Password</label>
+            <input type="password" name="password" id="password" placeholder="Your Password" value={formData.password} onChange={handleChange} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '7px', fontSize: '14px' }} />
+          </div>
+          <div className="signup_checkbox" style={{ marginBottom: '10px' }}>
+            <label htmlFor="remember">
+              <input type="checkbox" name="remember" id="remember" checked={formData.remember} onChange={handleChange} style={{ marginRight: '5px' }} /> Remember Me
+            </label>
+          </div>
+          <button type="submit" className="signup_button" style={{ width: '100%', padding: '10px', backgroundColor: '#52359c', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '16px', cursor: 'pointer' }}>Sign Up</button>
+          <p style={{ textAlign: 'center', fontSize: '14px' }}>Already have an account? <Link to="/" className="login-link" style={{ color: '#033366', textDecoration: 'none' }}>Login</Link></p>
+        </form>
+      </div>
     </div>
     
   );
