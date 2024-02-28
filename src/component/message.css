@@ -1,34 +1,17 @@
-/* Define CSS variables for easier adjustment */
-:root {
-    --navbar-width: 50px;
-    --sidebar-width: 70px;
-    --conversation-sidebar-width: 180px;
+.sidebar{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    width: 70px;
+    left: 0;
 }
-
-.sidebar-right,
-.card {
-    z-index: 999; /* Lower z-index */
-}
-
-/* Sidebar Right */
-.sidebar-right {
-    position: absolute;
-    width: 22%;
-    background-color: #dad2d2;
-    border: 1px solid #ddd;
-    padding: 10px;
-    top: 126px; /* Adjust top position */
-    bottom: 0;
-    right: 0; /* Adjust right position */
-    z-index: 1000; /* Ensure above the chat box */
-}
-
-/* Navbar */
 .navbar {
     position: fixed;
     left: 0;
     top: 0;
-    width: var(--navbar-width);
+    width: 50px;
     height: 100%;
     background: #52359c;
     display: flex;
@@ -37,12 +20,11 @@
     z-index: 1001;
 }
 
-/* Adjustments for navbar elements */
 .navbar nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 9px 0;
+    padding: 9px 0; /* Adjust padding as needed */
 }
 
 .title-image {
@@ -56,31 +38,31 @@
     width: 30px;
     height: 30px;
     margin-top: 220px;
-    border-radius: 50%;
+    border-radius: 50%; /* Make it circular */
 }
 
 .profile-info img {
     width: 40px;
     height: 40px;
     margin-left: 80px;
-    border-radius: 50%;
-    margin-top: -10px;
-    margin-bottom: 10px;
+    border-radius: 50%; /* Make it circular */
+    margin-top: -10px; /* Adjust margin-top as needed */
+    margin-bottom: 10px; /* Adjust margin-bottom as needed */
 }
 
 .profile-info h2 {
-    margin-top: -10px;
-    margin-bottom: 5px;
+    margin-top: -10px; /* Adjust margin-top as needed */
+    margin-bottom: 5px; /* Adjust margin-bottom as needed */
 }
 
 .status {
-    margin-top: -4px;
+    margin-top: -4px; /* Adjust margin-top as needed */
 }
 
 .inbox-link {
     display: inline-block;
     background-color: white;
-    padding: 3px;
+    padding: 3px; /* Make it circular */
 }
 
 .inbox-link i {
@@ -89,211 +71,208 @@
     padding: 3px;
 }
 
-/* Conversation Sidebar */
-.conversation-sidebar {
+
+.conversation-sidebar{
     padding-top: 0;
     position: fixed;
-    left: var(--sidebar-width);
+    left: 40px;
     height: 100vh;
-    width: var(--conversation-sidebar-width);
+    width: 180px;
     background-color: rgb(255, 255, 255);
 }
-
-/* Row */
-.row {
-    display: flex;
-    justify-content: space-around;
+.conversation-sidebar .ri-bar-chart-horizontal-line {
+    color: rgb(27, 2, 2) !important;
 }
 
-/* Chat Info */
-.chat-info {
+
+.row{
+ display: flex;
+ justify-content: space-around;
+}
+.chat-info{
     background-color: transparent;
     display: flex;
     user-select: none;
     font-size: 8px;
     height: 30px;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around ;
 }
-
-.chat-info:focus,
-.chat-info:active {
+.chat-info:focus, .chat-info:active {
     outline: none;
 }
-
-.chat-info:hover {
-    background-color: rgb(199, 196, 203);
-    cursor: pointer;
+.chat-info:hover{
+   background-color: rgb(199, 196, 203);
+   cursor: pointer;
 }
-
-/* Chat Box */
 .chat-box {
-    margin-left: var(--sidebar-width); /* Adjusted margin to accommodate the sidebar */
-    height: calc(100vh - 60px); /* Adjusted height to fit within the viewport */
+    margin-left: 220px;
+    height: 0; /* Adjusted height to accommodate searchbar */
     position: fixed;
-    top: 60px; /* Adjusted top position to accommodate the navbar */
-    width: calc(100% - var(--sidebar-width) - var(--sidebar-width) - var(--conversation-sidebar-width) - 10px); /* Adjusted width to fit between sidebar, right sidebar, and send button */
+    top: 0;
+ /* Adjusted width */
+    width: calc(100% - 430px);
     background-color: rgb(246, 242, 242);
     padding-bottom: 100px;
-    font-size: 14px;
-    overflow-y: auto;
+    font-size: 14px; /* Added padding to accommodate searchbar */
 }
-
-/* Name Box */
 .name-box {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; 
     font-size: 9px;
     padding: 0px 9px;
     border-bottom: 1px solid #ccc;
     height: 24px;
+    
+    
 }
-
 .name-box h2 {
-    text-align: left;
+    text-align: left; /* Remove default margin */
 }
-
-/* Card */
 .card {
-    position: absolute;
     width: 22%;
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     padding: 10px;
     font-size: 10px;
+    position: fixed;
     height: 105px;
-    right: 0;
-    top: 0;
+    right: 0; /* Adjust the distance from the right side */
+    top: 0; /* Adjust the distance from the top */
+    z-index: 1001; /* Ensure the card is above the sidebar */
 }
-
-/* Action Button */
-.action-button {
-    padding: 5px 15px;
-    background-color: #e0e0e7;
-    color: #693636;
+/* Style for action buttons */
+/* Style for action buttons */
+.action-button { 
+    padding: 5px 15px; /* Adjust padding as needed */
+/* Adjust margin between buttons */
+    background-color: #e0e0e7; /* Button background color */
+    color: #693636; 
     border-radius: 10px;
     font-size: 12px;
+    /* Button text color */
     border: 1px solid black;
     margin-bottom: 40px;
-    outline: none;
+    outline:none; 
 }
 
 .action-button:hover {
-    background-color: #b3a0a6;
+    background-color: #b3a0a6; /* Hover background color */
 }
 
-/* Card Links */
-.card a {
+/* Ensure actions are displayed in the same row */
+
+
+
+
+  .card a {
     text-decoration: none;
     color: #d8dadb;
     font-weight: bold;
-}
-
-/* Card_1 */
-.card_1 {
+  }
+  .card_1 {
     height: 35%;
     flex-direction: column;
+    /* Change position to absolute */
     top: 60px;
     border-radius: 10px;
-    right: 4px;
+    right: 4px; /* Adjust this value as needed */
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 12px;
-    z-index: 1001;
+    z-index: 1001; /* Ensure the card_1 is above the sidebar */
     width: 170px;
 }
-
 .customer-details {
     font-size: 10px;
     margin-top: -20px;
+   
 }
 
-/* Sidebar Right */
 .sidebar-right {
     width: 22%;
     background-color: #dad2d2;
     border: 1px solid #ddd;
     padding: 10px;
     position: fixed;
-    right: 0;
-    top: 126px;
+    right:0; /* Adjust the distance from the right side */
+    top: 126px; /* Adjust the distance from the top */
     bottom: 0;
-    z-index: 1000;
+   /* Adjust height to avoid overlap */
+    z-index: 1000; /* Ensure the sidebar is behind the card */
 }
 
-/* Searchbar */
+
 .searchbar {
     position: fixed;
-    left: var(--sidebar-width); /* Adjusted left position to accommodate the sidebar */
-    bottom: 10px;
-    width: calc(100% - var(--sidebar-width) - var(--conversation-sidebar-width) - 10px); /* Adjusted width to fit between sidebar, right sidebar, and send button */
+    left: 260px;
+    height: 15px;
+    width: calc(100% - 530px);
     display: flex;
+    bottom: 10px;
     justify-content: space-around;
     border-radius: 10px;
     border: solid 1px black;
-    background-color: white;
-    padding: 8px;
+    background-color: white; /* Added background color */
+    padding: 8px; /* Added padding for better appearance */
 }
-
-/* View Details Text */
 .view-details-text {
     font-weight: bold;
     margin-top: -20px;
     margin-left: -85px;
     font-size: 10px;
     color: #007bff;
-}
-
-.view-details-text:hover {
+    /* Add any other styles you want to apply to the button */
+  }
+  .view-details-text:hover {
     color: #71ce4f;
-}
+    /* Add underline on hover for visual feedback */
+  }
 
-/* Send Button */
+
+
+
+
+/* Send button */
 .send-button {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     width: 50px;
-    height: 35px;
+    height: 100%;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
     color: black;
-    z-index: 1001;/* Ensure above the message box */
 }
-
 .send-button:hover {
-    background-color: transparent;
+       background-color: transparent;
 }
 
-/* Searchbar Input */
 .searchbar input {
     border: none;
     outline: none;
-    flex: 1;
+    flex: 1; /* Allow input to expand */
 }
 
-/* Message Box */
 .message-box {
-    position: absolute;
+    
     top: 0;
-    bottom: 90px; /* Adjust bottom margin for send button */
     background-color: rgb(246, 242, 242);
-    overflow-y: auto; /* Allow scrolling */
-    width: calc(100% - var(--sidebar-width) - var(--conversation-sidebar-width)); 
+    position: absolute;
+    overflow-y: scroll; /* Changed to scroll */
+   height: 80%; /* Adjusted height to accommodate searchbar */
 }
 
-/* Chat Container */
 .chat-container {
     background-color: rgb(246, 242, 242);
     display: flex;
-    margin-right: 20px;
     flex-direction: column-reverse;
-    overflow-y: scroll;
-    height: 450px;
+    overflow-y: scroll; /* Changed to scroll */
+    height:318px;
+    
 }
 
-/* Left Message */
 .left {
     margin-left: 10px;
     align-self: flex-start;
@@ -303,10 +282,8 @@
     margin-top: 10px;
     margin-bottom: 2px;
     max-width: 70%;
-    font-size: 10px;
+    font-size: 10px;  /* Adjust the maximum width of left messages */
 }
-
-/* Right Message */
 .right {
     margin-right: 10px;
     align-self: flex-end;
@@ -317,73 +294,148 @@
     margin-top: 10px;
     margin-bottom: 2px;
     max-width: 70%;
-    font-size: 10px;
+    font-size: 10px; /* Adjusted font size */
 }
 
-/* Timestamp Right */
 .timestamp-right {
+    
     align-self: flex-end;
     width: fit-content;
     background-color: aliceblue;
-    font-size: 10px;
-    color: #242424;
+    font-size: 10px; /* Adjust the font size as needed */
+    color: #242424; /* Adjust the color of the timestamp */
+    /* margin-top: 5px; Adjust the margin top for spacing */
 }
-
-/* Timestamp Left */
 .timestamp-left {
     margin-bottom: 10px;
     align-self: flex-start;
     width: fit-content;
     background-color: aliceblue;
-    font-size: 12px;
-    color: #242424;
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #242424; /* Adjust the color of the timestamp */
+    /* margin-top: 5px; Adjust the margin top for spacing */
 }
 
-/* Actions */
 .actions {
     display: flex;
     justify-content: center;
-    margin-top: -8px;
-    gap: 10px;
+    margin-top: -8px; 
+    gap: 10px; /* Horizontally center the buttons */
 }
 
-/* Actions Links */
 .actions a {
-    text-decoration: none;
+    text-decoration: none; 
     font-weight: bold;
-    margin: 2px;
+    margin:2px; /* Add some spacing between the buttons */
 }
 
 /* Media query for smaller screens */
+/* Media query for smaller screens */
+/* Media query for smaller screens */
 @media only screen and (max-width: 768px) {
-    .sidebar,
-    .navbar,
-    .conversation-sidebar,
+    .sidebar {
+        width: 50px; /* Adjust width for smaller screens */
+    }
+
+    .conversation-sidebar {
+        width: 150px; /* Adjust width for smaller screens */
+    }
+
     .chat-box {
-        display: none;
+        margin-left: 200px; /* Adjust margin for smaller screens */
+        width: calc(100% - 300px); /* Adjust width for smaller screens */
     }
 
-    .chat-info,
-    .row {
-        justify-content: center;
-    }
-
-    .sidebar-right,
     .card {
-        display: none; /* Hide the sidebar and card */
+        width: 15%; /* Adjust width for smaller screens */
+    }
+
+    .card_1 {
+        width: 120px; /* Adjust width for smaller screens */
+    }
+
+    .sidebar-right {
+        width: 15%; /* Adjust width for smaller screens */
     }
 
     .searchbar {
-        left: 0;
-        width: 100%;
-        border-radius: 0;
+        left: 200px; /* Adjust left position for smaller screens */
+        width: calc(100% - 260px); /* Adjust width for smaller screens */
     }
 
     .message-box {
-        height: calc(100% - 95px);
+        height: 60%; /* Adjust height for smaller screens */
+    }
+    
+    .left,
+    .right {
+        max-width: 60%; /* Adjust max-width for smaller screens */
     }
 
-    .send-button {
-        bottom: 50px;
+    /* Adjust position and size of call, profile button, etc. */
+    .profile-image {
+        margin-top: 150px; /* Adjust margin-top for smaller screens */
+    }
+
+    .inbox-link {
+        padding: 3px 8px; /* Adjust padding for smaller screens */
+    }
+
+    .action-button {
+        padding: 3px 10px; /* Adjust padding for smaller screens */
+    }
+}
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        width: 50px; /* Adjust width for smaller screens */
+    }
+
+    .conversation-sidebar {
+        width: 150px; /* Adjust width for smaller screens */
+    }
+
+    .chat-box {
+        margin-left: 200px; /* Adjust margin for smaller screens */
+        width: calc(100% - 200px); /* Adjust width for smaller screens */
+    }
+
+    .card {
+        width: 15%; /* Adjust width for smaller screens */
+    }
+
+    .card_1 {
+        width: 120px; /* Adjust width for smaller screens */
+    }
+
+    .sidebar-right {
+        width: 15%; /* Adjust width for smaller screens */
+    }
+
+    .searchbar {
+        left: 200px; /* Adjust left position for smaller screens */
+        width: calc(100% - 200px); /* Adjust width for smaller screens */
+    }
+
+    .message-box {
+        height: 60%; /* Adjust height for smaller screens */
+    }
+
+    .left,
+    .right {
+        max-width: 60%; /* Adjust max-width for smaller screens */
+    }
+
+    /* Adjust position and size of call, profile button, etc. */
+    .profile-image {
+        margin-top: 150px; /* Adjust margin-top for smaller screens */
+    }
+
+    .inbox-link {
+        padding: 3px 8px; /* Adjust padding for smaller screens */
+    }
+
+    .action-button {
+        padding: 3px 10px; /* Adjust padding for smaller screens */
     }
 }
